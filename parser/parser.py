@@ -46,6 +46,7 @@ class Parser:
                 demands.append(self._parse_demand(splitted_line, is_first, 
                                demands_counter))
                 is_first = False
+        return links, demands
 
     @classmethod
     def _parse_link(cls, line):
