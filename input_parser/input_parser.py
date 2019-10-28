@@ -62,7 +62,7 @@ class Parser:
                 link["module_cost"] = float(x)
             if i == 4:
                 link["link_module"] = int(x)
-        # print(link)
+        #print(link)
         return link
 
     @classmethod
@@ -84,5 +84,5 @@ class Parser:
                     demand["link_list"] = []
                 else:
                     demand["link_list"].append(int(x))
-        # print(demand)
+        #print(demand)
         return demand
