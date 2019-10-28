@@ -1,8 +1,14 @@
-from parser.parser import Parser
+from input_parser import input_parser
+#for debugging
+from pprint import pprint
 
 def main():
-    data = Parser.read_file("./files/net4")
-    links, demands = Parser.mp2k(data)
+    data = input_parser.Parser.read_file("./files/net4")
+    links, demands = input_parser.Parser.mp2k(data)
+    #debug:
+    #pprint(links)
+    #pprint(demands)
+
 
 if __name__ == "__main__":
     main()
