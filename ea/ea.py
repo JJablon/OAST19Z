@@ -11,17 +11,17 @@ class EA_simulation:
         self.mutation_prob = mutation_prob
 
         if seed != 0:
-            self.random(seed)
+            self.random = random.Random(seed)
         else:
-            self.random()
+            self.random = random.Random()
 
-        for i in range (len(demands)):
-            for j in range (len(demands[i])):
-                pprint(demands[i][j])
+        #for i in range (len(demands)):
+            #for j in range (len(demands[i])):
+                #pprint(demands[i][j])
 
 
 
-         
+
             demand_types = []
             for i in range (len(demands)):
                 #pprint(demands[i]["type"])
@@ -40,10 +40,6 @@ class EA_simulation:
                     if demands[i]["type"]== demand_types[j]:
                         pprint (demands[i])
 
-
-
-            #for i in range (len(demand_types)):
-                # pprint(demand_types[i])
 
 
 
