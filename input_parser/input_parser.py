@@ -67,7 +67,8 @@ class Parser:
 
     @classmethod
     def _parse_demand(cls, line, is_first, counter):
-        demand = {"type": "demand_" + str(counter)}
+        demand = {"type": "demand"}
+        demand["id"] = counter
         for i, x in enumerate(line):
             if is_first and len(line) == 3:
                 if i == 0:
@@ -75,7 +76,7 @@ class Parser:
                 if i == 1:
                     demand["end_node"] = int(x)
                 if i == 2:
-                    demand["demands_volume"] = int(x)
+                    demand["dem ands_volume"] = int(x)
             elif len(line) == 1:
                 demand["number_of_demand_paths"] = int(x)
             else:
