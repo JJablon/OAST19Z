@@ -46,7 +46,8 @@ class Parser:
                 demands.append(self._parse_demand(splitted_line, is_first, 
                                demands_counter))
                 is_first = False
-        return links, demands
+        merged_demands = self._merge_demands(demands)
+        return links, merged_demands
 
     @classmethod
     def _parse_link(cls, line):
@@ -62,7 +63,6 @@ class Parser:
                 link["module_cost"] = float(x)
             if i == 4:
                 link["link_module"] = int(x)
-        #print(link)
         return link
 
     @classmethod
@@ -76,7 +76,7 @@ class Parser:
                 if i == 1:
                     demand["end_node"] = int(x)
                 if i == 2:
-                    demand["dem ands_volume"] = int(x)
+                    demand["demand_volume"] = int(x)
             elif len(line) == 1:
                 demand["number_of_demand_paths"] = int(x)
             else:
@@ -85,5 +85,24 @@ class Parser:
                     demand["link_list"] = []
                 else:
                     demand["link_list"].append(int(x))
-        #print(demand)
-        return demand
+        return demand 
+
+    @classmethod
+    def _merge_demands(cls, demands):
+        ids = set()
+        for demand in demands:
+            ids.add(demand["id"])
+        
+        merge_demands = []
+        for i in ids:
+            merge_demand = {"type": "demand", "id": i}
+            for demand in demands:
+                if i == demand["id"] and "start_node" in demand:
+                    merge_demand["start_node"] = demand["start_node"]
+                    merge_demand["end_node"] = demand["end_node"]
+                    merge_demand["demand_volume"] = demand["demand_volume"]
+                    merge_demand["paths"] = []
+                elif i == demand["id"] and "link_list" in demand:
+                     merge_demand["paths"].append(demand["link_list"])
+            merge_demands.append(merge_demand)
+        return merge_demands 
