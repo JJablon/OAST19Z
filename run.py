@@ -1,4 +1,5 @@
 from input_parser import input_parser
+from bfa import bfa
 #for debugging
 from pprint import pprint
 
@@ -8,6 +9,8 @@ def main():
     #debug:
     #pprint(links)
     #pprint(demands)
+    bruteforce = bfa.BruteForce(links, demands)
+    solutions = bruteforce.solve()
 
 
 if __name__ == "__main__":
