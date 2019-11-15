@@ -6,10 +6,10 @@ from pprint import pprint
 def main():
     data = input_parser.Parser.read_file("./files/net4")
     links, demands = input_parser.Parser.mp2k(data)
-    #debug:
-    #pprint(links)
-    #pprint(demands)
-    ea_sim = ea.EA_simulation(links, demands, 0,1,1,1)
+
+
+
+    ea_sim = ea.EA_simulation(links, demands, 1,1,1,1)
 
 
 
