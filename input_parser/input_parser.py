@@ -105,4 +105,4 @@ class Parser:
                 elif i == demand["id"] and "link_list" in demand:
                      merge_demand["paths"].append(demand["link_list"])
             merge_demands.append(merge_demand)
-        return merge_demands
+        return merge_demands 
