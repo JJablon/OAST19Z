@@ -57,7 +57,7 @@ class Parser:
                 link["start_node"] = int(x)
             if i == 1:
                 link["end_node"] = int(x)
-            if i == 2: 
+            if i == 2:
                 link["number_of_modules"] = int(x)
             if i == 3:
                 link["module_cost"] = float(x)
@@ -85,13 +85,16 @@ class Parser:
                     demand["link_list"] = []
                 else:
                     demand["link_list"].append(int(x))
+
         return demand 
+
 
     @classmethod
     def _merge_demands(cls, demands):
         ids = set()
         for demand in demands:
             ids.add(demand["id"])
+
         
         merge_demands = []
         for i in ids:
