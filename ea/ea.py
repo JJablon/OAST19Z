@@ -9,12 +9,12 @@ class Path:
         self.node_B = node_B
         self.via_nodes = via_paths
     def print_path(self):
-        print(" >Path no: "+str(self.path_id)+" from node: "+str(self.node_A)+" to node: "+str(self.node_B)+ " via paths: ", end = ' ')
+        print("   >Path no: "+str(self.path_id)+" from node: "+str(self.node_A)+" to node: "+str(self.node_B)+ " via links: ", end = ' ')
         for i in range(len(self.via_nodes)):
             print(str(self.via_nodes[i])+",", end = ' ')
-        #print('\b')
-        #print('\b')
-        print()
+            if i >= len(self.via_nodes)-1:
+                print(str(self.via_nodes[i]))
+
 
 
 class Demand:
@@ -117,22 +117,21 @@ class EA_simulation:
         self.mutation_prob = mutation_prob
         self.network = Network()
 
+
         if seed != 0:
             self.random = random.Random(seed)
         else:
             self.random = random.Random()
 
-        #for i in range (len(demands)):
-            #for j in range (len(demands[i])):
-                #pprint(demands[i][j])
+
 
         for i in range (len(demands)):
             paths = []
             paths.clear()
             for j in range (len(demands[i]["paths"])):
-                paths.append(Path(j,demands[i]["start_node"],demands[i]["end_node"],demands[i]["paths"][j]))
+                paths.append(Path(j+1,demands[i]["start_node"],demands[i]["end_node"],demands[i]["paths"][j]))
                 #pprint(demands[i]["paths"][j])
-            self.network.demand_add(Demand(demands[i]["id"], demands[i]["start_node"],demands[i]["end_node"],paths,demands[i]["demand_volume"]))
+            self.network.demand_add(Demand(i+1, demands[i]["start_node"],demands[i]["end_node"],paths,demands[i]["demand_volume"]))
 
 
 
@@ -145,11 +144,8 @@ class EA_simulation:
                                       ,links[i]["number_of_modules"]
                                       , links[i]["link_module"]
                                       ))
-        #for j in range (len(demands)):
-            #self.network.demands.add(Demand(j,demands[j].))
         self.network.link_print()
         self.network.demand_print()
-        #self.network.
         print("are unit tests completed successfully?")
         pprint(self.unit_tests_net4())
 
@@ -170,6 +166,10 @@ class EA_simulation:
                & self.network.are_nodes_connected_directly_ignoring_direction(2,1) \
                & self.network.are_nodes_connected_directly_ignoring_direction(3,1) \
                & ~self.network.are_nodes_connected_directly_ignoring_direction(4,1)
+
+
+
+
 
 
 

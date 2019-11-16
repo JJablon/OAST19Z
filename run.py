@@ -8,7 +8,6 @@ def main():
     links, demands = input_parser.Parser.mp2k(data)
 
 
-
     ea_sim = ea.EA_simulation(links, demands, 1,1,1,1)
 
 
