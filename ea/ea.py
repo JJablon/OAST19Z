@@ -133,40 +133,7 @@ class EA_simulation:
                 paths.append(Path(j,demands[i]["start_node"],demands[i]["end_node"],demands[i]["paths"][j]))
                 #pprint(demands[i]["paths"][j])
             self.network.demand_add(Demand(demands[i]["id"], demands[i]["start_node"],demands[i]["end_node"],paths,demands[i]["demand_volume"]))
-            #pprint(demands[i])
 
-
-#        demand_types = []
-#        for i in range (len(demands)):
-            #pprint(demands[i]["type"])
-#            demand_types.append(demands[i]["type"])
-                #print("------------")
-                #print(i)
-                #print("------------\n")
-                #pprint(demands[i])
-                #for j in range (len(demands[i])):
-                #   print(str(j)+"  =>")
-                #   pprint(demands[i][j])
-            #remove duplicates
-        #demand_types = sorted(list(dict.fromkeys(demand_types))).copy()
-#        demand_types = list(dict.fromkeys(demand_types)).copy()
-#        for j in range (len(demand_types)):
-#            for i in range (len(demands)):
-#                if demands[i]["type"]== demand_types[j]:
-#                    pprint (demands[i])
-#                    pprint(1)
-#                    paths = []
-#                    k= 1
-#                    if "demand_path_id" in demand_types[j] and ( k> len(demands) or "demand_path_id" not in demand_types[j+1] ):
-#                        if demands[i]["demand_path_id"] == k:
-#                            paths.append(demands[k])
-#                            k = k+1
-                    #else:
-                        #pprint(paths)
-                    #for j in range(len(demands[i].))
-                    #self.network.demands.append(Demand(i,demands[i]["demand_start_node"],demands[i]["demand_end_node"],
-                    #demands[i][]
-                    #                                   ))
 
 
         for i in range (len(links)):
