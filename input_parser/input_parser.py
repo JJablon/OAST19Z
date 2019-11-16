@@ -85,7 +85,9 @@ class Parser:
                     demand["link_list"] = []
                 else:
                     demand["link_list"].append(int(x))
-        return demand
+
+        return demand 
+
 
     @classmethod
     def _merge_demands(cls, demands):
@@ -93,6 +95,7 @@ class Parser:
         for demand in demands:
             ids.add(demand["id"])
 
+        
         merge_demands = []
         for i in ids:
             merge_demand = {"type": "demand", "id": i}
