@@ -3,8 +3,6 @@ import sys
 from input_parser import input_parser
 from ea import ea
 from bfa import bfa
-#for debugging
-from pprint import pprint
 
 
 def main():
@@ -25,7 +23,13 @@ def main():
     
     option = input("Do you want run EA? [y/n]: ")
     if option == "y":
-        ea_sim = ea.EA_simulation(links, demands, 1,1,1,1)
+        seed = 7
+        population_size = 10  # must be even
+        generations = 250
+        mutation_probability = 0.05
+
+        evo_alg = ea.EvolutionAlgorithm(links, demands, seed, population_size, generations, mutation_probability)
+        evo_alg.solve()
 
     option = input("Do you want run bruteforce? [y/n]: ")
     if option == "y":
