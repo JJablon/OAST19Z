@@ -14,8 +14,10 @@ def main():
     #debug:
     #pprint(links)
     #pprint(demands)
-    bruteforce = bfa.BruteForce(links, demands)
-    bruteforce.solve()
+    option = input("Do you want run bruteforce? [y/n]")
+    if option == "y":
+        bruteforce = bfa.BruteForce(links, demands)
+        bruteforce.solve()
 
 
 if __name__ == "__main__":
