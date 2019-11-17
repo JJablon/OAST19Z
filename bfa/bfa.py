@@ -1,5 +1,6 @@
 import itertools
 import math
+import time
 
 class BruteForce():
     def __init__(self, links, demands):
@@ -10,17 +11,24 @@ class BruteForce():
         self._demands = demands
         self.possible_solutions = []
         self.solutions = []
-        self._init_debug_files()     
+        self._start_time = 0.0
+        self._is_first = True
+        self._init_debug_files()
     
     def solve(self):
         print("Bruteforce started!")
+        self._start_time = time.time()
         for demand in self._demands:
             self._flows_generator(demand)
         self._solutions_generator()
         self._play()
         print("Number of solutions: {}".format(len(self.solutions)))
+        
+        print("Time to all solutions: {0:.2f}s".format(time.time() - self._start_time))
         best_solution = min(self.solutions, key=lambda x:x["cost"])
-        print("Best solution: {}".format(best_solution))
+        print("Frist best solution: {}".format(best_solution))
+        print("Time to first best solution: {0:.2f}s".format(time.time() - self._start_time))
+        
         self._save_best_solution(best_solution)
         print("Bruteforce ended!")
 
@@ -78,6 +86,11 @@ class BruteForce():
             for i, link in enumerate(used_links): 
                 solution["link #{}".format(str(i + 1))] = link
             solution["cost"] = cost
+            if self._is_first == True:
+                print("First solution: {}".format(solution))
+                print("Time to first solution: {0:.2f}s".format(time.time() - self._start_time))
+                self._save_best_solution(solution)
+                self._is_first = False
             self.solutions.append(solution)
             self._save_solutions(solution)
 
