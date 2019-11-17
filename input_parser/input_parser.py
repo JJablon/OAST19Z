@@ -43,9 +43,9 @@ class Parser:
                     is_first = True
                     continue
                 splitted_line = line.split(" ")
-                demands.append(self._parse_demand(splitted_line, is_first, 
-                               demands_counter))
+                demands.append(self._parse_demand(splitted_line, is_first, demands_counter))
                 is_first = False
+        
         merged_demands = self._merge_demands(demands)
         return links, merged_demands
 
@@ -107,5 +107,6 @@ class Parser:
                     merge_demand["paths"] = []
                 elif i == demand["id"] and "link_list" in demand:
                      merge_demand["paths"].append(demand["link_list"])
+            merge_demand.pop("id")
             merge_demands.append(merge_demand)
         return merge_demands 

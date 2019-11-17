@@ -4,6 +4,7 @@ from bfa import bfa
 #for debugging
 from pprint import pprint
 
+
 def main():
     data = input_parser.Parser.read_file("./files/net4")
     links, demands = input_parser.Parser.mp2k(data)
@@ -13,10 +14,8 @@ def main():
     #debug:
     #pprint(links)
     #pprint(demands)
-    
     bruteforce = bfa.BruteForce(links, demands)
-    solutions = bruteforce.solve()
-
+    bruteforce.solve()
 
 
 if __name__ == "__main__":
