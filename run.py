@@ -25,7 +25,7 @@ def main():
     if option == "y":
         seed = 7
         population_size = 10  # must be even
-        generations = 250
+        generations = 20
         mutation_probability = 0.05
 
         evo_alg = ea.EvolutionAlgorithm(links, demands, seed, population_size, generations, mutation_probability)

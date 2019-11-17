@@ -155,6 +155,16 @@ class Chromosome:
                 total_cost += self.links[link_id-1].module_cost
         return total_cost
 
+    def get_links_load(self):
+        load_table = {}
+        for link in self.links:
+            load_table[link.id] = 0
+        for gene in self.genes:
+            gene_links_load = gene.get_links_load()
+            for link_load in gene_links_load:
+                load_table[link_load] += gene_links_load[link_load]
+        return load_table
+
     def __gt__(self, other):
         return self.get_cost() > other.get_cost()
 
@@ -212,9 +222,14 @@ class EvolutionAlgorithm:
 
     def solve(self):
 
+        total_solutions_created = 0
+        total_solutions_accepted = 0
         print('EA started!')
         for x in range(0, self.population_size):
             self.chromosomes[0].append(Chromosome(self.demands, self.links, self.mutation_prob, self.random))
+        total_solutions_created += self.population_size
+        total_solutions_accepted += self.population_size
+
         for generation_number in range(1, self.generations):
             self.chromosomes.append([])
             for i in range(0, self.population_size):
@@ -225,6 +240,8 @@ class EvolutionAlgorithm:
                 new_candidates.append(Offspring(self.chromosomes[generation_number-1][i-1], self.chromosomes[generation_number-1][i], self.links, self.mutation_prob, self.random))
                 sorted_candidates = sorted(new_candidates)
                 self.chromosomes[generation_number].append(sorted_candidates[0])
+                total_solutions_created += 4
+                total_solutions_accepted += 1
 
         lowest = self.chromosomes[0][0]
         for gen in range(0, self.generations):
@@ -233,6 +250,8 @@ class EvolutionAlgorithm:
                     lowest = self.chromosomes[gen][pop]
         print('Initial population:', self.population_size)
         print('Generations created:', self.generations)
-        print('Total number of solutions created', self.population_size * self.generations)
+        print('Total number of solutions created', total_solutions_created)
+        print('Total number of solutions accepted', total_solutions_accepted)
         print('Best solution cost:', lowest.get_cost())
+        print('Best solution link loads:', lowest.get_links_load())
 
