@@ -78,8 +78,8 @@ class BruteForce():
             for i, link in enumerate(used_links): 
                 solution["link #{}".format(str(i + 1))] = link
             solution["cost"] = cost
-
             self.solutions.append(solution)
+            self._save_solutions(solution)
 
     def _init_debug_files(self):
         with open("bfa/flows_generator.debug", "w", encoding="UTF-8") as f:
