@@ -24,7 +24,7 @@ def main():
     if option == "y":
         seed = 7
         population_size = 10  # must be even
-        generations = 250
+        generations = 20
         mutation_probability = 0.05
 
         links, demands = input_parser.Parser.mp2k(data)
