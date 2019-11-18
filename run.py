@@ -19,7 +19,6 @@ def main():
         print("exited, wrong_input")
         sys.exit()
     
-    links, demands = input_parser.Parser.mp2k(data)
     
     option = input("Do you want run EA? [y/n]: ")
     if option == "y":
@@ -28,11 +27,13 @@ def main():
         generations = 250
         mutation_probability = 0.05
 
+        links, demands = input_parser.Parser.mp2k(data)
         evo_alg = ea.EvolutionAlgorithm(links, demands, seed, population_size, generations, mutation_probability)
         evo_alg.solve()
 
     option = input("Do you want run bruteforce? [y/n]: ")
     if option == "y":
+        links, demands = input_parser.Parser.mp2k(data)
         bruteforce = bfa.BruteForce(links, demands)
         bruteforce.solve()
 
