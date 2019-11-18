@@ -22,13 +22,17 @@ def main():
     
     option = input("Do you want run EA? [y/n]: ")
     if option == "y":
-        seed = 7
-        population_size = 10  # must be even
-        generations = 250
-        mutation_probability = 0.05
+        seed = input("Seed: ")
+        population_size = input("Population size (Must be even): ")
+        generations = input("Generations: ")
+        mutation_probability = input("Mutation propability: ")
+       #  seed = 7
+       #  population_size = 10  # must be even
+       #  generations = 250
+       #  mutation_probability = 0.05
 
         links, demands = input_parser.Parser.mp2k(data)
-        evo_alg = ea.EvolutionAlgorithm(links, demands, seed, population_size, generations, mutation_probability)
+        evo_alg = ea.EvolutionAlgorithm(links, demands, int(seed), int(population_size), int(generations), float(mutation_probability))
         evo_alg.solve()
 
     option = input("Do you want run bruteforce? [y/n]: ")
