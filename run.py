@@ -12,12 +12,12 @@ def main():
     # elif option == "net12_2":
     #     data = input_parser.Parser.read_file("./files/net12_2")
     # elif option == "net4":
-    data = input_parser.Parser.read_file("./files/net4")
+    data = input_parser.Parser.read_file("./files/net12_2")
     # else:
     #     print("exited, wrong_input")
     #     sys.exit()
-    
-    
+
+
     # option = input("Do you want run EA? [y/n]: ")
     # if option == "y":
     # seed = input("Seed: ")
@@ -31,7 +31,7 @@ def main():
 
     links, demands = input_parser.Parser.mp2k(data)
     evo_alg = ea.EvolutionAlgorithm(links, demands, int(seed), int(population_size), int(generations), float(mutation_probability))
-    evo_alg.solve()
+    # evo_alg.print()
 
     # option = input("Do you want run bruteforce? [y/n]: ")
     # if option == "y":
@@ -40,5 +40,5 @@ def main():
     #     bruteforce.solve()
 
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+main()
